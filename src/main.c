@@ -48,6 +48,7 @@ enum  {
 MontUI* mont_ui_new (void);
 MontUI* mont_ui_construct (GType object_type);
 static void mont_ui_real_startup (GApplication* base);
+static void mont_ui_create_widgets (MontUI* self);
 static void mont_ui_real_shutdown (GApplication* base);
 static void mont_ui_real_activate (GApplication* base);
 gint mont_ui_main (gchar** args, int args_length1);
@@ -77,7 +78,11 @@ static void mont_ui_real_startup (GApplication* base) {
 	GtkBuilder* _tmp0_ = NULL;
 	GObject* _tmp5_ = NULL;
 	GtkWindow* _tmp6_ = NULL;
-	GtkWindow* _tmp7_ = NULL;
+	GtkHeaderBar* header = NULL;
+	GObject* _tmp7_ = NULL;
+	GtkHeaderBar* _tmp8_ = NULL;
+	GtkWindow* _tmp9_ = NULL;
+	GtkWindow* _tmp10_ = NULL;
 	GError * _inner_error_ = NULL;
 	self = (MontUI*) base;
 	G_APPLICATION_CLASS (mont_ui_parent_class)->startup ((GApplication*) G_TYPE_CHECK_INSTANCE_CAST (self, gtk_application_get_type (), GtkApplication));
@@ -115,13 +120,28 @@ static void mont_ui_real_startup (GApplication* base) {
 		g_clear_error (&_inner_error_);
 		return;
 	}
-	_tmp5_ = gtk_builder_get_object (ui_builder, "firstWindow");
+	_tmp5_ = gtk_builder_get_object (ui_builder, "window");
 	_tmp6_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp5_, gtk_window_get_type (), GtkWindow));
 	_g_object_unref0 (self->priv->window);
 	self->priv->window = _tmp6_;
-	_tmp7_ = self->priv->window;
-	gtk_application_add_window ((GtkApplication*) self, _tmp7_);
+	_tmp7_ = gtk_builder_get_object (ui_builder, "headerbar");
+	_tmp8_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp7_, gtk_header_bar_get_type (), GtkHeaderBar));
+	header = _tmp8_;
+	gtk_header_bar_set_show_close_button (header, FALSE);
+	g_object_set (header, "spacing", 10, NULL);
+	g_object_set ((GtkWidget*) header, "height-request", 50, NULL);
+	_tmp9_ = self->priv->window;
+	gtk_window_set_titlebar (_tmp9_, (GtkWidget*) header);
+	_tmp10_ = self->priv->window;
+	gtk_application_add_window ((GtkApplication*) self, _tmp10_);
+	mont_ui_create_widgets (self);
+	_g_object_unref0 (header);
 	_g_object_unref0 (ui_builder);
+}
+
+
+static void mont_ui_create_widgets (MontUI* self) {
+	g_return_if_fail (self != NULL);
 }
 
 
