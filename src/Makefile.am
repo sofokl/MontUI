@@ -10,7 +10,8 @@ MontUI_CFLAGS = \
 
 MontUI_VALAFLAGS = \
 	--pkg gtk+-3.0 \
-	--target-glib $(GLIB_REQUIRED)
+	--target-glib $(GLIB_REQUIRED)\
+	--pkg libsoup-2.4
 
 MontUI_LDADD = \
 	$(MontUI_U_LIBS)

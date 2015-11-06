@@ -87,7 +87,7 @@ static void mont_ui_real_startup (GApplication* base) {
 	{
 		gchar* _tmp1_ = NULL;
 		gchar* _tmp2_ = NULL;
-		_tmp1_ = g_build_filename (DATA_DIRECTORY, "interface.ui", NULL, NULL);
+		_tmp1_ = g_build_filename ("./data", "interface.ui", NULL, NULL);
 		_tmp2_ = _tmp1_;
 		gtk_builder_add_from_file (ui_builder, _tmp2_, &_inner_error_);
 		_g_free0 (_tmp2_);
@@ -105,7 +105,7 @@ static void mont_ui_real_startup (GApplication* base) {
 		_inner_error_ = NULL;
 		_tmp3_ = e;
 		_tmp4_ = _tmp3_->message;
-		g_warning ("main.vala:24: Could not load game UI: %s", _tmp4_);
+		g_warning ("main.vala:27: Could not load game UI: %s", _tmp4_);
 		_g_error_free0 (e);
 	}
 	__finally0:

@@ -1,3 +1,5 @@
+using Gtk;
+
 public class MontUI : Gtk.Application
 {
   private Gtk.Window window;
@@ -16,8 +18,9 @@ public class MontUI : Gtk.Application
     var ui_builder = new Gtk.Builder ();
     try
     {
-      ui_builder.add_from_file (Path.build_filename (
-          DATA_DIRECTORY, "interface.ui", null));
+      //ui_builder.add_from_file (Path.build_filename (DATA_DIRECTORY, "interface.ui", null));
+
+      ui_builder.add_from_file (Path.build_filename ("./data", "interface.ui", null));
     }
     catch (Error e)
     {
