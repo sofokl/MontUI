@@ -31,7 +31,6 @@ public class MontUI : Gtk.Application
     header.set_show_close_button(false);
 	header.spacing = 10;
 	header.height_request = 50;
-
 	window.set_titlebar(header);
 	//header.set_vexpand(true);
 
